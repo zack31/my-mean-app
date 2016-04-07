@@ -1,6 +1,24 @@
-var app = angular.module('chirpApp', ['ngRoute', 'ngResource']).run(function($rootScope) {
-	$rootScope.authenticated = false;
-	$rootScope.current_user = '';
+var app = angular.module('chirpApp', ['ngRoute', 'ngResource']).run(function($rootScope,$http) {
+	//$rootScope.authenticated = false;
+	//$rootScope.current_user = '';
+   // function getUserStatus() {
+        $http.get('/auth/status')
+            // handle success
+            .success(function (data) {
+                if(data.status){
+                    $rootScope.authenticated = data.status;
+                } else {
+                    $rootScope.authenticated = data.status;
+                }
+                $rootScope.current_user = '';
+            })
+            // handle error
+            .error(function (data) {
+                $rootScope.authenticated = data.status;
+                $rootScope.current_user = '';
+            });
+    //}
+	
 	
 	$rootScope.signout = function(){
     	$http.get('auth/signout');
@@ -59,6 +77,7 @@ app.controller('authController', function($scope, $http, $rootScope, $location){
       }
       else{
         $scope.error_message = data.message;
+          $scope.error_message_show = true;
       }
     });
   };
@@ -72,6 +91,7 @@ app.controller('authController', function($scope, $http, $rootScope, $location){
       }
       else{
         $scope.error_message = data.message;
+        $scope.error_message_show = true;
       }
     });
   };

@@ -10,13 +10,40 @@
 	</head>
 	<body ng-app="chirpApp">
 		<div id='main' class="container">
-			<nav class="navbar-fluid navbar-default navbar-fixed-top">
-				<div class="container">
-					<a class="navbar-brand" href="#"> Chirp! </a>
-					<p class="navbar-text"> Learn the MEAN stack by building this tiny app</p>
-					<p class="navbar-right navbar-text" ng-hide="authenticated"><a href="#/login">Login</a> or <a href="#/signup">Register</a></p>
-					<p class="navbar-right navbar-text" ng-show="authenticated"><a href="#" ng-click="signout()">Logout</a></p>
-					<p class="navbar-right navbar-text" ng-show="authenticated">Signed in as {{current_user}}</p>
+			<nav class="navbar-fluid navbar-inverse navbar-fixed-top">
+				<div class="container-fluid">
+					<div class="col-md-2">
+						<a class="navbar-brand" href="#"> My Mean App </a>
+					</div>
+					<div class="col-md-8">
+						<ul class="nav navbar-nav navbar-left">
+							<ul class="nav navbar-nav">
+								<li >
+									<a href="#/">
+										<i class="glyphicon glyphicon-pencil"></i> Article
+									</a>
+								</li>
+								<li >
+									<a href="#/validation">
+										<i class="glyphicon glyphicon-globe"></i> Map
+									</a>
+								</li>
+								<li ng-show="authenticated">
+									<a href="#/validation">
+										<i class="glyphicon glyphicon-user"></i> User Management
+									</a>
+								</li>
+
+							</ul>
+						</ul>
+					</div>
+					<div class="col-md-2">
+						<p class="navbar-right navbar-text" ng-hide="authenticated"><a href="#/login">Login</a> or <a href="#/register">Register</a></p>
+						<p class="navbar-right navbar-text" ng-show="authenticated"><a href="#" ng-click="signout()">Logout</a></p>
+						<p class="navbar-right navbar-text" ng-show="authenticated" ng-href="#/{{current_user}}">Signed in as {{current_user}}</p>
+                        <a ng-href="{{current_user}}" ng-bind="{{current_user}}"></a>
+					</div>
+
 				</div>
 			</nav>
 			<div class="col-md-offset-2 col-md-8">
