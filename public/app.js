@@ -1,4 +1,13 @@
-var app = angular.module('chirpApp', ['ngRoute', 'ngResource'])
+var app = angular.module('chirpApp',
+    [
+        'ngRoute',
+        'ngResource',
+        'ngSanitize',
+        'openLayersDirectiveModule',
+        'openlayers',
+        'bootstrapModal'
+
+    ])
     .run(function($rootScope,$http) {
 
         $http.get('/auth/status')

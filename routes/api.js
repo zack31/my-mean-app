@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require( 'mongoose' );
 var Post = mongoose.model('Post');
+//var fs = require('fs');
+
 //Used for routes that must be authenticated.
 function isAuthenticated (req, res, next) {
 	// if user is authenticated in the session, call the next() to call the next request handler 
@@ -26,9 +28,11 @@ router.use('/posts', isAuthenticated);
 router.route('/posts')
 	//creates a new post
 	.post(function(req, res){
-
+        console.log(req.body);
 		var post = new Post();
 		post.text = req.body.text;
+		post.title = req.body.title;
+		
 		post.created_by = req.body.created_by;
 		post.save(function(err, post) {
 			if (err){
@@ -53,6 +57,7 @@ router.route('/posts')
 router.route('/posts/:id')
 	//gets specified post
 	.get(function(req, res){
+        
 		Post.findById(req.params.id, function(err, post){
 			if(err)
 				res.send(err);

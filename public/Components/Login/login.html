@@ -3,7 +3,12 @@
 	<div ng-show="error_message_show" class="alert alert-danger" style="text-align: center">
 		{{error_message}}
 	</div>
-	<input type="username" ng-model="user.username" placeholder="Username" class="form-control"><br>
-	<input type="password" ng-model="user.password" placeholder="Password" class="form-control"><br>
+
+	<span class="glyphicon glyphicon-user"></span> <strong>Username</strong>
+	<input type="username" ng-model="user.username" placeholder="Enter username" class="form-control"><br>
+
+	<span class="glyphicon glyphicon-eye-open"></span> <strong>Password</strong>
+	<input type="password" ng-model="user.password" placeholder="Enter password" class="form-control"><br>
+
 	<input type="submit" value="Log in" class="btn btn-primary btn-block" />
 </form>

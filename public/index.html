@@ -1,11 +1,35 @@
 <html>
 	<head>
 		<title>Chirp</title>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.js"></script>
+		<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-route.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-resource.js"></script>
-		<script src="javascripts/chirpApp.js"></script>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-resource.js"></script> -->
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-route.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-resource.js"></script>
+
+        <script src="https://code.angularjs.org/1.5.3/angular-sanitize.min.js"  type="text/javascript"></script>
+
+        <script src="http://openlayers.org/en/v3.15.1/build/ol.js" type="text/javascript"></script>
+
+		<script src="app.js"></script>
+        <script src="./app.config.js"></script>
+        <script src="Components/Main/mainController.js"></script>
+        <script src="Components/Main/mainService.js"></script>
+        <script src="Components/Login/authController.js"></script>
+        <script src="Components/Login/authService.js"></script>
+        <script src="Components/Map/mapController.js"></script>
+        <script src="Components/Home/homeController.js"></script>
+        <script src="Components/Home/homeService.js"></script>
+        <script src="Components/UserManagement/userManagementController.js"></script>
+        <script src="Components/UserManagement/userManagementService.js"></script>
+        <script src="Shared/Directives/Map/openLayers.js"></script>
+
+        <script src="Shared/Services/bootstrapModal.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
 		<link rel="stylesheet" href="stylesheets/style.css">
 	</head>
 	<body ng-app="chirpApp">
@@ -13,23 +37,23 @@
 			<nav class="navbar-fluid navbar-inverse navbar-fixed-top">
 				<div class="container-fluid">
 					<div class="col-md-2">
-						<a class="navbar-brand" href="#"> My Mean App </a>
+						<a class="navbar-brand" href="#/home"> My Mean App </a>
 					</div>
-					<div class="col-md-8">
+					<div class="col-md-6 col-sm-6">
 						<ul class="nav navbar-nav navbar-left">
 							<ul class="nav navbar-nav">
 								<li >
-									<a href="#/">
+									<a href="#/article">
 										<i class="glyphicon glyphicon-pencil"></i> Article
 									</a>
 								</li>
 								<li >
-									<a href="#/validation">
+									<a href="#/map">
 										<i class="glyphicon glyphicon-globe"></i> Map
 									</a>
 								</li>
 								<li ng-show="authenticated">
-									<a href="#/validation">
+									<a href="#/userManagement">
 										<i class="glyphicon glyphicon-user"></i> User Management
 									</a>
 								</li>
@@ -37,16 +61,27 @@
 							</ul>
 						</ul>
 					</div>
-					<div class="col-md-2">
-						<p class="navbar-right navbar-text" ng-hide="authenticated"><a href="#/login">Login</a> or <a href="#/register">Register</a></p>
-						<p class="navbar-right navbar-text" ng-show="authenticated"><a href="#" ng-click="signout()">Logout</a></p>
-						<p class="navbar-right navbar-text" ng-show="authenticated" ng-href="#/{{current_user}}">Signed in as {{current_user}}</p>
-                        <a ng-href="{{current_user}}" ng-bind="{{current_user}}"></a>
-					</div>
+					<div class="col-md-4 col-sm-6">
 
+						<p class="navbar-right navbar-text" ng-hide="authenticated">
+                            <a href="#/login">
+                                <span class="glyphicon glyphicon-user"></span> Login
+                            </a>
+                            or
+                            <a href="#/register">
+                                <span class="glyphicon glyphicon-check"></span> Register
+                            </a>
+                        </p>
+
+						<p class="navbar-right navbar-text" ng-show="authenticated">
+                            <a href="#/" ng-click="signout()"> <span class="glyphicon glyphicon-off"></span> Logout
+                            </a>
+							<p class="navbar-right navbar-text" ng-show="authenticated">Signed in as {{current_user}}</p>
+                        </p>
+					</div>
 				</div>
 			</nav>
-			<div class="col-md-offset-2 col-md-8">
+			<div >
 				<div ng-view>
 				</div>
 			</div>

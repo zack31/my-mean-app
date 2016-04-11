@@ -10,6 +10,7 @@ var passport = require('passport');
 require('./models/models');
 var index = require('./routes/index');
 var api = require('./routes/api');
+var userManagement = require('./routes/userManagement');
 var authenticate = require('./routes/authenticate')(passport);
 var mongoose = require('mongoose');                         //add for Mongo support
 mongoose.connect('mongodb://localhost/MeanAppDb');              //connect to Mongo
@@ -35,6 +36,7 @@ app.use(passport.session());
 app.use('/', index);
 app.use('/auth', authenticate);
 app.use('/api', api);
+app.use('/user', userManagement);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

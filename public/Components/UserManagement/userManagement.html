@@ -1,0 +1,128 @@
+    <div ng-show="userDeleted" class="alert alert-success">
+        <strong>User deleted !</strong>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <strong>Users List</strong> [ {{allUsers.length}} user(s)]
+                </div>
+                <div class="panel-body">
+                    <table class="table table-bordered table-hover table-striped">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>UserName</th>
+                            <th>Mail</th>
+                            <th>Phone</th>
+                            <th>Address</th>
+                            <th>Created</th>
+                            <th>
+                                <button type="button" ng-click="" data-toggle="modal" data-target="#addModal" class="btn btn-primary btn-block">
+                                    <span class="glyphicon glyphicon-plus"></span> Add User
+                                </button>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="user in allUsers">
+                            <td>{{$index}}</td>
+                            <td>{{user.username}}</td>
+                            <td>{{user.mail}}</td>
+                            <td>{{user.phone}}</td>
+                            <td>{{user.address}}</td>
+                            <td>{{user.created_at | date:"MM/dd/yyyy '@' h:mma"}}</td>
+                            <td>
+                                <div class="col-md-6">
+                                    <button type="button" ng-click="" data-toggle="modal" data-target="#modifyModal" class="btn btn-warning btn-block">
+                                        <span class="glyphicon glyphicon-cog"></span> Modify
+                                    </button>
+                                </div>
+                                <div class="col-md-6">
+                                    <button type="button" ng-click="deleteUser($index,user)" class="btn btn-danger btn-block">
+                                        <span class="glyphicon glyphicon-trash"></span> Delete
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="addModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{{modalTitle}}</h4>
+                </div>
+
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" >Login:</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" ng-model="currentUser.uid">
+                            </div>
+                        </div>
+                        <div ng-show="uidShow" class="alert alert-warning">
+                            Veuillez choisir un login !
+                        </div>
+                        <div ng-show="uidBadShow" class="alert alert-warning">
+                            Ce login existe deja !
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">Nom:</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" ng-model="currentUser.nom">
+                            </div>
+                        </div>
+                        <div ng-show="nomShow" class="alert alert-warning">
+                            Veuillez choisir un nom !
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">Prenom:</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" ng-model="currentUser.prenom">
+                            </div>
+                        </div>
+                        <div ng-show="prenomShow" class="alert alert-warning">
+                            Veuillez choisir un prenom !
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">Email:</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" ng-model="currentUser.mail">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">Region:</label>
+                            <div class="col-sm-10">
+                                <select ng-model="dr" class="form-control" ng-options="dr.value as dr.label for dr in listeDrs">
+                                </select>
+                            </div>
+                        </div>
+                        <div ng-show="regionShow" class="alert alert-warning">
+                            Veuillez choisir une region !
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" ng-click="validate()" class="btn btn-default">
+                        <span class="glyphicon {{glyphicon}}"></span> {{val}}
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        <span class="glyphicon glyphicon-remove"></span> Quitter
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+

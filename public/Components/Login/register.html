@@ -1,9 +1,28 @@
-<form class="form-auth" ng-submit="register()">
-	<h2 style="text-align: center">Register</h2>
-	<div ng-show="error_message_show" class="alert alert-danger" style="text-align: center">
-		{{error_message}}
-	</div>
-	<input type="username" ng-model="user.username" placeholder="Username" class="form-control"><br>
-	<input type="password" ng-model="user.password" placeholder="Password" class="form-control"><br>
-	<input type="submit" value="Register" class="btn btn-primary btn-block" />
-</form>
+<div>
+    <form class="form-auth" ng-submit="register()" >
+        <h2 style="text-align: center">Register</h2>
+
+        <div ng-show="error_message_show" class="alert alert-danger" style="text-align: center">
+            {{error_message}}
+        </div>
+        <span class="glyphicon glyphicon-user"></span> <strong>Username</strong>
+        <input type="username" ng-model="user.username" placeholder="Enter username" class="form-control" required><br>
+
+        <span class="glyphicon glyphicon-eye-open"></span> <strong>Password</strong>
+        <input type="password" ng-model="user.password" placeholder="Enter password" class="form-control" required><br>
+
+        <span class="glyphicon glyphicon-envelope"></span> <strong>Email</strong>
+        <input type="email" name="email" ng-model="user.mail" placeholder="Enter email" class="form-control" required>
+        <span style="color:red" ng-show="myForm.email.$invalid">
+            <span ng-show="myForm.email.$error.email">Invalid email address.</span>
+        </span><br>
+
+        <span class="glyphicon glyphicon-home"></span> <strong>Address</strong>
+        <input type="username" ng-model="user.address" placeholder="Enter your address" class="form-control"><br>
+
+        <span class="glyphicon glyphicon-earphone"></span> <strong>Phone</strong>
+        <input type="username" ng-model="user.phone" placeholder="Enter your phone number" class="form-control"><br>
+
+        <input type="submit" value="Register" class="btn btn-primary btn-block" ng-disabled=" form-auth.email.$invalid">
+    </form>
+</div><div class="input-group date" data-provide="datepicker">
