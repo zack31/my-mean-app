@@ -4,7 +4,7 @@ var router = express.Router();
 var mongoose = require( 'mongoose' );
 var User = mongoose.model('User');
 
-// //Used for routes that must be authenticated.
+//Used for routes that must be authenticated.
 // function isAuthenticated (req, res, next) {
 //     // if user is authenticated in the session, call the next() to call the next request handler
 //     // Passport adds this method to request object. A middleware is allowed to add properties to
@@ -53,7 +53,7 @@ router.route('/users')
         });
     });
 
-//post-specific commands. likely won't be used
+//post-specific commands.
 router.route('/users/:id')
     //gets specified user
     .get(function(req, res){

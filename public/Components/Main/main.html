@@ -19,7 +19,7 @@
 
 
     <div id="post-stream">
-        <h2 style="text-align: center">Article list</h2>
+        <h2 style="text-align: center">Article list [{{posts.length}}]</h2>
         <div class="post" ng-repeat="post in posts | orderBy:'created_at':true" ng-class-odd="'odd'" ng-class-even="'even'">
             <div class="panel-group">
 

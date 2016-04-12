@@ -6,7 +6,6 @@ var app = angular.module('chirpApp',
         'openLayersDirectiveModule',
         'openlayers',
         'bootstrapModal'
-
     ])
     .run(function($rootScope,$http) {
 

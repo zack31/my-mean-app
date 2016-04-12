@@ -1,15 +1,15 @@
-
-app.controller('mainController', function(mainService, $scope, $rootScope,$location){
+app.controller('mainController', function(mainService, $scope, $rootScope){
     $scope.posts = mainService.query();
     $scope.newPost = {created_by: '', text: '', created_at: '', title:''};
     $scope.article_message_show=false;
+    $scope.images = [];
     
     $scope.post = function() {
         $scope.newPost.created_by = $rootScope.current_user;
         $scope.newPost.created_at = Date.now();
         $scope.newPost.title = $scope.title;
         $scope.newPost.text = $scope.text;
-console.log($scope.newPost);
+
         mainService.save($scope.newPost, function(){
             $scope.posts = mainService.query();
             $scope.article_message_show=true;
@@ -20,7 +20,7 @@ console.log($scope.newPost);
     $scope.removePost = function(index,data){
         console.log(data);
         mainService.remove({id:data._id});
-        //$scope.posts = mainService.query();
+
         $scope.posts.splice(index,1);
         $scope.newPost = {created_by: '', text: '', created_at: '', title:''};
     };

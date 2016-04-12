@@ -9,7 +9,7 @@ var passport = require('passport');
 //initialize mongoose schemas
 require('./models/models');
 var index = require('./routes/index');
-var api = require('./routes/api');
+var article = require('./routes/article');
 var userManagement = require('./routes/userManagement');
 var authenticate = require('./routes/authenticate')(passport);
 var mongoose = require('mongoose');                         //add for Mongo support
@@ -20,8 +20,6 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(session({
   secret: 'keyboard cat'
@@ -35,7 +33,7 @@ app.use(passport.session());
 
 app.use('/', index);
 app.use('/auth', authenticate);
-app.use('/api', api);
+app.use('/article', article);
 app.use('/user', userManagement);
 
 // catch 404 and forward to error handler
